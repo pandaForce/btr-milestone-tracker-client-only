@@ -118,6 +118,13 @@ function TranchesScreen(props) {
     // }
   }, [filtercategory, stockdata]);
 
+
+// const showLotDetailHandler = (lot_details) => {
+//   props.navigation.navigate("Lot" , {
+//     lotdetails : lot_details
+//   });
+// }
+
   const showLotsHandler = (sfid, sfname, fc_from_card) => {
     const current_tranche_filter = filteritems.tranche;
     if (filterAlreadyAdded(filter_set[filtercategory], sfname) === -1) {
@@ -134,7 +141,7 @@ function TranchesScreen(props) {
       setCurrentTranche(sfname);
     }
     setfiltercategory("lot");
-    props.navigation.navigate("Lots");
+    // props.navigation.navigate("Lots");
   };
 
   function renderCards(itemData) {
@@ -144,6 +151,7 @@ function TranchesScreen(props) {
         cardData={itemData.item}
         WINDOW_HEIGHT={height}
         showLotsHandler={showLotsHandler}
+        // showLotDetailHandler = {showLotDetailHandler}
       />
     );
   }

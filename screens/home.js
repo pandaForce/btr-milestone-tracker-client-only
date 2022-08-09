@@ -188,7 +188,7 @@ export default function HomeScreen({ navigation }) {
     <>
       <View style={style_templates.home_screen_container}>
         <ImageBackground
-          source={require("../assets/suburb2.jpg")}
+          source={require("../assets/reports2.jpg")}
           resizeMode="cover"
           imageStyle={style_templates.home_screen_image}
         >

@@ -1,6 +1,6 @@
 import { signInWithCustomToken } from "firebase/auth";
 import { StyleSheet, Dimensions } from "react-native";
-import { lightgrey } from "../constants/styles";
+// import { lightgrey } from "../constants/styles";
 
 const font_family = [
   "lucida grande",
@@ -13,6 +13,8 @@ const font_family = [
 /* color codes */
 const color_codes = {
   lightgrey: "#d3d3d3",
+  lightsteelblue : "#b0c4de",
+  sienna : "#a0522d"
 };
 
 /* dimensions*/
@@ -49,8 +51,8 @@ const style_templates = StyleSheet.create({
   home_screen_button_group_container: {
     display: "flex",
     flexDirection: "row",
-    marginTop: Dimensions.get("window").height * 0.5,
-    // paddingLeft: 40,
+    marginTop: Dimensions.get("window").height * 0.6,
+    paddingLeft: 80,
     justifyContent: "center",
     alignItems: "center",
     // width: 300,
@@ -68,7 +70,36 @@ const style_templates = StyleSheet.create({
 
   app_sub_container: {
     flex: 1,
-    width: 600,
+    // width: 600,
+        width:
+      Dimensions.get("window").width > 1000
+        ? 0.6 * Dimensions.get("window").width
+        : Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
+    borderWidth:1,
+    borderColor: 'black'
+  },
+
+  lot_details_header_container: {
+    flex: 1,
+        width:
+      Dimensions.get("window").width > 1000
+        ? 0.6 * Dimensions.get("window").width
+        : Dimensions.get("window").width,
+            borderWidth:1,
+    borderColor: 'black'
+  },
+
+
+  lot_details_container: {
+    flex: 9,
+        width:
+      Dimensions.get("window").width > 1000
+        ? 0.6 * Dimensions.get("window").width
+        : Dimensions.get("window").width,
+    // height: Dimensions.get("window").height,
+        borderWidth:1,
+    borderColor: 'black'
   },
 
   login_sub_container: {
@@ -99,13 +130,21 @@ const style_templates = StyleSheet.create({
     paddingHorizontal: 10,
     height:
       Dimensions.get("window").width > 1000
-        ? 0.08 * Dimensions.get("window").height
+        ? 0.075 * Dimensions.get("window").height
         : 0.1 * Dimensions.get("window").height,
     // width: "90%",
-    width:
+    // width:
+    //   Dimensions.get("window").width > 1000
+    //     ? 0.275 * Dimensions.get("window").width
+    //     : 0.99 * Dimensions.get("window").width,
+
+        width:
       Dimensions.get("window").width > 1000
-        ? 0.275 * Dimensions.get("window").width
-        : 0.99 * Dimensions.get("window").width,
+        ? 0.6 * Dimensions.get("window").width
+        : Dimensions.get("window").width,
+    
+
+
     backgroundColor: "#f8f8ff",
     // backgroundColor: "#add8e6",
     alignItems: "center",
@@ -118,14 +157,22 @@ const style_templates = StyleSheet.create({
     paddingHorizontal: 12,
     // borderRadius: 10,
     justifyContent: "center",
-    height: 70,
+        height:
+      Dimensions.get("window").width > 1000
+        ? 70
+        : 70,
+    // height: 70,
     alignItems: "center",
     // flex: 1,
     // flexDirection: "column",
   },
 
   tranche_main_text: {
-    fontSize: 30,
+       fontSize:
+      Dimensions.get("window").width > 1000
+        ? 25
+        : 30,
+    // fontSize: 30,
     color: "#f8f8ff",
     alignItems: "center",
   },
@@ -163,13 +210,23 @@ const style_templates = StyleSheet.create({
     color: "black",
     // fontWeight: "bold",
   },
+  generic_sub_text_description: {
+    color: color_codes.sienna,
+    fontSize: 10,
+    // color: "black",
+    // fontWeight: "bold",
+  },
 
   lot_number_box: {
     // justifyContent: "center",
     alignItems: "center",
-    width: 50,
-    borderWidth: 1,
-    borderColor: color_codes.lightgrey,
+    width: 
+    Dimensions.get("window").width > 1000
+        ? 150
+        : 50,
+    // width: 50,
+    // borderWidth: 1,
+    // borderColor: color_codes.lightgrey,
     // backgroundColor: color_codes.lightgrey,
   },
 
@@ -355,6 +412,13 @@ const style_templates = StyleSheet.create({
   error_message_text: {
     color: "red",
   },
+  
+  button:{
+    backgroundColor:'#ff5c5c',
+  }
+
 });
+
+
 
 export { font_family, style_templates };

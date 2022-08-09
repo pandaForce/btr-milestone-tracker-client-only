@@ -15,6 +15,7 @@ import HomeScreen from "./screens/home";
 import TrancheScreen from "./screens/main";
 import LoginScreen from "./screens/login";
 import LotsScreen from "./screens/lots";
+import LotScreen from "./screens/lot";
 import SummaryScreen from "./screens/summary";
 import { firebase } from "./utils/firebaseConfig";
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
@@ -103,7 +104,7 @@ export default function App() {
           component={HomeScreen}
           options={{
             headerRight: () => (
-              <Button onPress={authCtx.logout} title="LOGOUT"></Button>
+              <Button onPress={authCtx.logout} title="LOGOUT"></Button>              
               // <Pressable onPress={authCtx.logout}>
               //   <Icon2 name="logout" size={30} color="#f08080" />
               // </Pressable>
@@ -120,12 +121,18 @@ export default function App() {
           component={LotsScreen}
           options={{
             headerRight: () => (
+            <>
               <Button onPress={authCtx.logout} title="FILTERS"></Button>
+              </>
               // <Pressable onPress={authCtx.logout}>
               //   <Icon2 name="logout" size={30} color="#f08080" />
               // </Pressable>
             ),
           }}
+        />
+        <Stack.Screen
+          name="Lot"
+          component={LotScreen}
         />
         <Stack.Screen
           name="Groups"
