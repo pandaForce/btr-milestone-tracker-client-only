@@ -49,6 +49,8 @@ function TranchesScreen(props) {
   const [countOfLots, setTotalCountOfLots] = React.useState(0);
   const [currentTranche, setCurrentTranche] = React.useState();
   const [dataFetchComplete, setDataFetchComplete] = React.useState(false);
+  const [serverError, setServerError] = React.useState(false);
+  const [errorMessage, setErrorMessage]  = React.useState('');
 
   // const stockdata_to_use =  isTest ? stockdata_min : stockdata_full
   console.log("isTest: " + isTest);
@@ -62,24 +64,33 @@ function TranchesScreen(props) {
     console.log("inside useEffect");
 
     async function getBtrData() {
-      // const btr_records = await axios.get('http://192.168.1.8:3001/sfapi')
-      const btr_records = await axios.get(axios_url, {
-        mode: "no-cors",
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        },
-      });
+        const btr_records = await axios.get(axios_url, {
+          mode: "no-cors",
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        })
+          console.log("btr_records: " + JSON.stringify(btr_records));
+          // console.log("btr_records.data: " + JSON.stringify(btr_records.data));
+        if(btr_records.data.statuscode === 200) {
+          console.log('btr_records.data.stockdata.length: ' + btr_records.data.stockdata.length)
+          // console.log("btr_records.data: " + JSON.stringify(btr_records.data));
+          // console.log('btr_records.data.statusCode: ' + btr_records.data.statusCode );
+          // console.log("btr_records.data.message: " + btr_records.data.message);
+          setDataFetchComplete(true);
+          setStockdata(btr_records.data.stockdata);
+        } else {
+          console.log("Server Error : " + btr_records.data.message)
+          setDataFetchComplete(true)
+          setServerError(true)
+          setErrorMessage(btr_records.data.message)
+          // props.navigation.navigate("Error" , {
+          //   errorMessage : btr_records.data
+          // });
+        }
 
-      // console.log('btr_records.length: ' + btr_records.length)
-      console.log("btr_records.data: " + JSON.stringify(btr_records.data));
-      console.log(
-        "btr_records.data.statusCode: " + btr_records.data.statusCode
-      );
-      console.log("btr_records.data.message: " + btr_records.data.message);
-      // console.log('btr_records.data.data.length: ' + btr_records.data.data.length)
-      setDataFetchComplete(true);
-      setStockdata(btr_records.data.data);
+
     }
 
     console.log("inside useEffect, dataFetchComplete: " + dataFetchComplete);
@@ -216,13 +227,18 @@ function TranchesScreen(props) {
         </View>
       )} */}
       <View style={style_templates.app_sub_container}>
-        {!dataFetchComplete && (
+        {dataFetchComplete && serverError && (
+          <View>
+            <Text> {errorMessage}</Text>
+          </View>
+        )}
+        {!dataFetchComplete && !serverError && (
           <View style={style_templates.loading_state_container}>
             <Text>Loading...</Text>
             <ActivityIndicator size="large" />
           </View>
         )}
-        {dataFetchComplete && (
+        {dataFetchComplete && !serverError  && (
           <View style={style_templates.cards_plus_filter_container}>
             <View style={style_templates.filter_container}>
               {filtercategory != "tranche" && (
@@ -255,7 +271,7 @@ function TranchesScreen(props) {
               )}
             </View>
             <View style={style_templates.cards_container}>
-              {showCards && (
+              {showCards && !serverError  && (
                 <>
                   <View style={style_templates.lots_count_banner}>
                     {/* <View> */}
