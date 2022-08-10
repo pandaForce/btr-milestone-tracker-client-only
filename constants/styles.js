@@ -122,7 +122,7 @@ const style_templates = StyleSheet.create({
   card_template: {
     // flex: 1,
     flexDirection: "row",
-    borderRadius: 9,
+    borderRadius: 2,
     // marginHorizontal: 20,
     // marginBottom: 10,
     borderBottomWidth: 1,
@@ -222,7 +222,7 @@ const style_templates = StyleSheet.create({
     alignItems: "center",
     width: 
     Dimensions.get("window").width > 1000
-        ? 150
+        ? 250
         : 50,
     // width: 50,
     // borderWidth: 1,

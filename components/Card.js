@@ -149,15 +149,13 @@ export default function Card(props) {
             </Text>
           </View>
 
-          <View style={style_templates.generic_box}>
-          {/* <View style={style_templates.generic_box_lot}> */}
+          {/* <View style={style_templates.generic_box}>
             <Icon2 name="usd" size={20} color="#8fbc8f" />
-            {/* <Text style={style_templates.generic_sub_text}></Text> */}
             <Text>{(props.cardData.buildprice / 1000).toFixed(0)}K</Text>
             <Text style={style_templates.generic_sub_text_description}>
               Build Price 
             </Text>
-          </View>
+          </View> */}
 
           <View style={style_templates.progress_box_lot}>
             <Text style={style_templates.progress_main_text}>
