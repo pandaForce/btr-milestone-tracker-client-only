@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { StyleSheet, Text, View, Button, StatusBar } from "react-native";
-import { style_templates } from "../constants/styles";
+import { style_templates } from "../config_variables/styles";
 
 function LotScreen({route, navigation}) {
   return (

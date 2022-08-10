@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
-import { style_templates } from "../constants/styles";
+import { style_templates } from "../config_variables/styles";
 import { useNavigation } from '@react-navigation/native';
 import calculateCompletePctg from "../utils/calculateCompletePctg";
 import Icon from "react-native-vector-icons/Ionicons";

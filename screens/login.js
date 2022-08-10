@@ -4,7 +4,7 @@ import { ImageBackground, StyleSheet, Text, View, Button } from "react-native";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Inputbox from "../components/Inputbox";
 import { AuthContext } from "../store/auth-context";
-import { style_templates } from "../constants/styles";
+import { style_templates } from "../config_variables/styles";
 
 export default function LoginScreen({ navigation }) {
   const [username, setUserName] = useState("");

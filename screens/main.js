@@ -11,7 +11,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import axios from "axios";
-import { style_templates } from "../constants/styles";
+import { style_templates } from "../config_variables/styles";
 
 // import TRANCHES from '../dummy_data/tranches'
 import React, { useState } from "react";
@@ -28,8 +28,10 @@ import mergeFilters from "../utils/mergeFilters";
 import filterAlreadyAdded from "../utils/filterAlreadyAdded";
 import Filters from "../components/Filters";
 import extractDataForConcentrationReport from "../utils/extractDataForConcentrationReport";
-import axios_url from "../utils/axios_url";
+// import axios_url from "../utils/axios_url";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import buildEndpoint from "../utils/buildEndpoint";
+
 
 // function TranchesScreen({route}) {
 function TranchesScreen(props) {
@@ -60,11 +62,14 @@ function TranchesScreen(props) {
       ? { ...filter_set }
       : { ...filteritems };
 
+
   React.useEffect(() => {
     console.log("inside useEffect");
 
     async function getBtrData() {
-        const btr_records = await axios.get(axios_url, {
+      const  axios_url_dynamic = buildEndpoint('data-fetch')
+      const btr_records = await axios.get(axios_url_dynamic, {
+        // const btr_records = await axios.get(axios_url, {
           mode: "no-cors",
           headers: {
             "Access-Control-Allow-Origin": "*",
@@ -124,6 +129,7 @@ function TranchesScreen(props) {
 //     lotdetails : lot_details
 //   });
 // }
+
 
   const showLotsHandler = (sfid, sfname, fc_from_card) => {
     const current_tranche_filter = filteritems.tranche;

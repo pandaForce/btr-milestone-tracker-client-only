@@ -1,5 +1,5 @@
 import { ImageBackground, Text, View, Button } from "react-native";
-import { style_templates } from "../constants/styles";
+import { style_templates } from "../config_variables/styles";
 // import grouped_stock_data from '../dummy_data/grouped_stock_data'
 // import grouped_stock_data from '../dummy_data/stockdata'
 // import React, { useState } from 'react'
@@ -16,6 +16,7 @@ import { style_templates } from "../constants/styles";
 import stockdata_btr_only from "../dummy_data/stockdata_btr_only";
 import extractDataForConcentrationReport from "../utils/extractDataForConcentrationReport";
 import finalizeDataForConcentrationReport from "../utils/finalizeDataForConcentrationReport";
+import buildEndpoint from "../utils/buildEndpoint";
 
 export default function HomeScreen({ navigation }) {
   // const [filtercategory, setfiltercategory] =  useState('tranche')
@@ -108,7 +109,9 @@ export default function HomeScreen({ navigation }) {
         max_tranches: max_tranches,
       };
 
-      fetch("http://192.168.0.10:3001/concentrationreport", {
+      const  url_dynamic = buildEndpoint('concentration-report')
+      fetch(url_dynamic, {
+      // fetch("http://192.168.0.10:3001/concentrationreport", {
         // fetch('http://192.168.1.8:3001/concentrationreport', {
         // fetch('http://192.168.43.163:3001/concentrationreport', {
         // fetch('http://10.80.6.73:3001/concentrationreport', {
@@ -147,23 +150,23 @@ export default function HomeScreen({ navigation }) {
           alert("Error: " + error);
         });
 
-      // .then(response => response.json())
-      // .then(data => {
-      //     console.log('data: ' + JSON.stringify(data));
-      // })
-      // .catch((error) => {
-      //     console.log('data.errorCode: ' + data.errorCode);
-      // });
+    //   .then(response => response.json())
+    //   .then(data => {
+    //       console.log('data: ' + JSON.stringify(data));
+    //   })
+    //   .catch((error) => {
+    //       console.log('data.errorCode: ' + data.errorCode);
+    //   });
 
-      // try {
-      //   let res = await axios.post( 'http://192.168.1.8:3001/concentrationreport' ,  payload)
-      // } catch (err) {
-      //     if (err.response) {
-      //     } else if (err.request) {
-      //     } else {
-      //         console.log('Error', err.message);
-      //     }
-      // }
+    //   try {
+    //     let res = await axios.post( 'http://192.168.1.8:3001/concentrationreport' ,  payload)
+    //   } catch (err) {
+    //       if (err.response) {
+    //       } else if (err.request) {
+    //       } else {
+    //           console.log('Error', err.message);
+    //       }
+    //   }
     }
 
     postExcelData(

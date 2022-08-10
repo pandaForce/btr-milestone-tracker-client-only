@@ -1,5 +1,5 @@
 import { Pressable, Button, View, Text } from "react-native";
-import { style_templates } from "../constants/styles";
+import { style_templates } from "../config_variables/styles";
 
 const Filtercat = (props) => {
   const FilterClickHandler = () => {
