@@ -1,6 +1,7 @@
+import { StyleSheet, Dimensions } from "react-native";
+
 const ISTEST = false
-// const LOCALHOST_IP_ADDRESS = '192.168.13.151'
-const LOCALHOST_IP_ADDRESS = '192.168.0.10'
+const LOCALHOST_IP_ADDRESS = '192.168.13.49'
 const SECRET_CODE = "ougigUpzuT5zRE96ntcEO5INGixXYx77vKHUbEuZxPlTp66K4P"
 
 const variables = {
@@ -8,6 +9,7 @@ const variables = {
   localhost_ip_address : LOCALHOST_IP_ADDRESS,
   base_url : ISTEST ? "http://" + LOCALHOST_IP_ADDRESS + ":3000/"  : "https://btr-app.herokuapp.com/" ,
   secret_code: SECRET_CODE,
+   isDesktop: Dimensions.get("window").width > 1000 ? true : false,
   url_config: 
   [
       { 'function': 'data-fetch' ,

@@ -15,9 +15,9 @@ import { style_templates } from "../config_variables/styles";
 
 // import TRANCHES from '../dummy_data/tranches'
 import React, { useState } from "react";
-import isTest from "../utils/isTest";
-import stockdata_full from "../dummy_data/stockdata";
-import stockdata_min from "../dummy_data/stockdata_min";
+// import isTest from "../utils/isTest";
+// import stockdata_full from "../dummy_data/stockdata";
+// import stockdata_min from "../dummy_data/stockdata_min";
 import applyFilters from "../utils/applyFilters";
 import extractDataByFilter from "../utils/extractDataByFilter";
 import initializeFilterSet from "../utils/initializeFilterSet";
@@ -55,7 +55,7 @@ function TranchesScreen(props) {
   const [errorMessage, setErrorMessage]  = React.useState('');
 
   // const stockdata_to_use =  isTest ? stockdata_min : stockdata_full
-  console.log("isTest: " + isTest);
+  // console.log("isTest: " + isTest);
   const filter_set = initializeFilterSet(filter_params);
   const final_filter_set =
     Object.keys(filteritems).length === 0
@@ -269,7 +269,7 @@ function TranchesScreen(props) {
                     <View style={style_templates.filter_button_template}>
                       <Pressable onPress={resetApp}>
                         <Text style={style_templates.filter_button_text}>
-                          Reset
+                          Tranches
                         </Text>
                       </Pressable>
                     </View>

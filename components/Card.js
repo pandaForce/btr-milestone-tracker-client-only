@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
-import { style_templates } from "../config_variables/styles";
+import { style_templates} from "../config_variables/styles";
+import { variables } from "../config_variables/variables";
 import { useNavigation } from '@react-navigation/native';
 import calculateCompletePctg from "../utils/calculateCompletePctg";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -50,9 +51,13 @@ export default function Card(props) {
               {/* Total Lots : {props.cardData.count} */}
               {props.cardData.count}
             </Text>
+            <>
+            { variables.isDesktop  &&
             <Text style={style_templates.generic_sub_text_description}>
               Total Lots
             </Text>
+            }
+          </>
           </View>
 
           <View style={style_templates.generic_box}>
@@ -62,9 +67,13 @@ export default function Card(props) {
               {/* Land Settled = {props.cardData.landsettled} */}
               {props.cardData.landsettled}
             </Text>
+             <>
+              { variables.isDesktop  &&
             <Text style={style_templates.generic_sub_text_description}>
               Land settled
             </Text>
+            }
+          </>            
           </View>
 
           <View style={style_templates.generic_box}>
@@ -73,9 +82,13 @@ export default function Card(props) {
               {/* Settlement Claim : {props.cardData.settlementclaimdone} */}
               {props.cardData.settlementclaimdone}              
             </Text>
+             <>
+              { variables.isDesktop  &&
             <Text style={style_templates.generic_sub_text_description}>
               Settlement Claims
             </Text>            
+            }
+          </>            
           </View>
 
           <View style={style_templates.generic_box}>
@@ -84,9 +97,13 @@ export default function Card(props) {
               {/* Leased ={props.cardData.leased} */}
               {props.cardData.leased}
             </Text>
+             <>
+              { variables.isDesktop  &&
             <Text style={style_templates.generic_sub_text_description}>
               Leased
             </Text>                        
+            }
+          </>            
           </View>
 
           <View style={style_templates.progress_box}>
@@ -114,17 +131,25 @@ export default function Card(props) {
               <Text style={style_templates.lot_number_main_text}>
                 {props.cardData.name}
               </Text>
+             <>
+              { variables.isDesktop  &&
             <Text style={style_templates.generic_sub_text_description}>
               Lot Number
             </Text>
+            }
+          </>            
           </View>
 
           <View style={style_templates.generic_box}>
           {/* <View style={style_templates.generic_box_lot}> */}
           <Text>{props.cardData.status}</Text>
+             <>
+              { variables.isDesktop  &&
             <Text style={style_templates.generic_sub_text_description}>
               Land Contract Status
             </Text>
+            }
+          </>            
             </View>
 
           {/* <Text>{props.cardData.projname}</Text>
@@ -134,19 +159,27 @@ export default function Card(props) {
             {/* <Icon2 name="tachometer" size={30} color="#8fbc8f" /> */}
             {/* <Text style={style_templates.generic_sub_text}></Text> */}
             <Text>{props.cardData.lateststage} Stage</Text>
+             <>
+              { variables.isDesktop  &&
             <Text style={style_templates.generic_sub_text_description}>
               Last Milestone
             </Text>
+            }
+          </>            
           </View>
 
           <View style={style_templates.generic_box}>
           {/* <View style={style_templates.generic_box_lot}> */}
             <Icon2 name="usd" size={20} color="#8fbc8f" />
             {/* <Text style={style_templates.generic_sub_text}></Text> */}
-            <Text>{(props.cardData.price / 1000).toFixed(0)}K</Text>
+            <Text>{(props.cardData.price / 1000).toFixed(0)}K</Text>            
+             <>
+              { variables.isDesktop  &&
             <Text style={style_templates.generic_sub_text_description}>
               Land Price 
             </Text>
+            }
+          </>            
           </View>
 
           {/* <View style={style_templates.generic_box}>
