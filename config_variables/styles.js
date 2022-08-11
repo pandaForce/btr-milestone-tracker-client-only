@@ -1,5 +1,6 @@
 import { signInWithCustomToken } from "firebase/auth";
 import { StyleSheet, Dimensions } from "react-native";
+import { variables } from "../config_variables/variables";
 // import { lightgrey } from "../constants/styles";
 
 const font_family = [
@@ -33,9 +34,9 @@ const style_templates = StyleSheet.create({
   home_screen_image: {
     flex: 1,
     flexDirection: "column",
-    marginLeft: Dimensions.get("window").width > 1000 ? 400 : 0,
+    marginLeft: variables.isDesktop ? 400 : 0,
     width:
-      Dimensions.get("window").width > 1000
+      variables.isDesktop
         ? 0.6 * Dimensions.get("window").width
         : Dimensions.get("window").width,
     height: Dimensions.get("window").height,
@@ -52,7 +53,7 @@ const style_templates = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     marginTop: Dimensions.get("window").height * 0.6,
-    paddingLeft: Dimensions.get("window").width > 1000 ? 20 : 0,
+    paddingLeft: variables.isDesktop ? 20 : 0,
     justifyContent: "center",
     alignItems: "center",
     // width: 300,
@@ -72,7 +73,7 @@ const style_templates = StyleSheet.create({
     flex: 1,
     // width: 600,
         width:
-      Dimensions.get("window").width > 1000
+      variables.isDesktop
         ? 0.6 * Dimensions.get("window").width
         : Dimensions.get("window").width,
     height: Dimensions.get("window").height,
@@ -83,7 +84,7 @@ const style_templates = StyleSheet.create({
   lot_details_header_container: {
     flex: 1,
         width:
-      Dimensions.get("window").width > 1000
+      variables.isDesktop
         ? 0.6 * Dimensions.get("window").width
         : Dimensions.get("window").width,
             borderWidth:1,
@@ -94,7 +95,7 @@ const style_templates = StyleSheet.create({
   lot_details_container: {
     flex: 9,
         width:
-      Dimensions.get("window").width > 1000
+      variables.isDesktop
         ? 0.6 * Dimensions.get("window").width
         : Dimensions.get("window").width,
     // height: Dimensions.get("window").height,
@@ -129,17 +130,17 @@ const style_templates = StyleSheet.create({
     borderBottomColor: color_codes.lightgrey,
     paddingHorizontal: 10,
     height:
-      Dimensions.get("window").width > 1000
+      variables.isDesktop
         ? 0.075 * Dimensions.get("window").height
         : 0.1 * Dimensions.get("window").height,
     // width: "90%",
     // width:
-    //   Dimensions.get("window").width > 1000
+    //   variables.isDesktop
     //     ? 0.275 * Dimensions.get("window").width
     //     : 0.99 * Dimensions.get("window").width,
 
         width:
-      Dimensions.get("window").width > 1000
+      variables.isDesktop
         ? 0.6 * Dimensions.get("window").width
         : Dimensions.get("window").width,
     
@@ -158,7 +159,7 @@ const style_templates = StyleSheet.create({
     // borderRadius: 10,
     justifyContent: "center",
         height:
-      Dimensions.get("window").width > 1000
+      variables.isDesktop
         ? 70
         : 70,
     // height: 70,
@@ -169,7 +170,7 @@ const style_templates = StyleSheet.create({
 
   tranche_main_text: {
        fontSize:
-      Dimensions.get("window").width > 1000
+      variables.isDesktop
         ? 25
         : 30,
     // fontSize: 30,
@@ -221,7 +222,7 @@ const style_templates = StyleSheet.create({
     // justifyContent: "center",
     alignItems: "center",
     width: 
-    Dimensions.get("window").width > 1000
+    variables.isDesktop
         ? 250
         : 50,
     // width: 50,
@@ -343,12 +344,12 @@ const style_templates = StyleSheet.create({
     borderBottomColor: color_codes.lightgrey,
     paddingHorizontal: 10,
     height:
-      Dimensions.get("window").width > 1000
+      variables.isDesktop
         ? 0.08 * Dimensions.get("window").height
         : 0.06 * Dimensions.get("window").height,
     // width: "90%",
     width:
-      Dimensions.get("window").width > 1000
+      variables.isDesktop
         ? 0.275 * Dimensions.get("window").width
         : 0.9 * Dimensions.get("window").width,
     backgroundColor: "#f8f8ff",
