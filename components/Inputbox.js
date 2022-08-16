@@ -1,4 +1,5 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { style_templates } from "../config_variables/styles";
 
 const Inputbox = (props) => {
 
@@ -6,10 +7,18 @@ const Inputbox = (props) => {
     props.storeInputHandler(props.label, x)
   }
 
+  const isUsername = props.buttonname === "username" ? true : false
+  const isPassword = props.buttonname === "password" ? true : false
+
   return (
   <View>
     <Text>{props.label}</Text>
-    <TextInput style={styles.input_box_container} onChangeText={inputChangeHandler}></TextInput>
+      { isUsername && 
+        <TextInput style={style_templates.login_page_input_text_box} onChangeText={inputChangeHandler} placeholder={props.placeholder}></TextInput>
+      }
+      { isPassword && 
+        <TextInput  secureTextEntry={true} style={style_templates.login_page_input_text_box} onChangeText={inputChangeHandler} placeholder={props.placeholder}></TextInput>
+      }
   </View>
   );
 };

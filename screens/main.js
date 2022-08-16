@@ -8,7 +8,10 @@ import {
   StatusBar,
   Pressable,
   ScrollView,
+  Modal,
   ActivityIndicator,
+  StyleSheet,
+  TouchableOpacity,
 } from "react-native";
 import axios from "axios";
 import { style_templates } from "../config_variables/styles";
@@ -29,8 +32,9 @@ import filterAlreadyAdded from "../utils/filterAlreadyAdded";
 import Filters from "../components/Filters";
 import extractDataForConcentrationReport from "../utils/extractDataForConcentrationReport";
 // import axios_url from "../utils/axios_url";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import buildEndpoint from "../utils/buildEndpoint";
+import Icon2 from "react-native-vector-icons/FontAwesome";
+
 
 
 // function TranchesScreen({route}) {
@@ -53,6 +57,7 @@ function TranchesScreen(props) {
   const [dataFetchComplete, setDataFetchComplete] = React.useState(false);
   const [serverError, setServerError] = React.useState(false);
   const [errorMessage, setErrorMessage]  = React.useState('');
+  const [modalVisible, setModalVisible] = useState(false);
 
   // const stockdata_to_use =  isTest ? stockdata_min : stockdata_full
   // console.log("isTest: " + isTest);
@@ -76,10 +81,10 @@ function TranchesScreen(props) {
             "Content-Type": "application/json",
           },
         })
-          console.log("btr_records: " + JSON.stringify(btr_records));
+          // console.log("btr_records: " + JSON.stringify(btr_records));
           // console.log("btr_records.data: " + JSON.stringify(btr_records.data));
         if(btr_records.data.statuscode === 200) {
-          console.log('btr_records.data.stockdata.length: ' + btr_records.data.stockdata.length)
+          // console.log('btr_records.data.stockdata.length: ' + btr_records.data.stockdata.length)
           // console.log("btr_records.data: " + JSON.stringify(btr_records.data));
           // console.log('btr_records.data.statusCode: ' + btr_records.data.statusCode );
           // console.log("btr_records.data.message: " + btr_records.data.message);
@@ -107,8 +112,38 @@ function TranchesScreen(props) {
       props.navigation.setOptions({
         title: filter_categories.find((f) => f.apiname === filtercategory)
           ? filter_categories.find((f) => f.apiname === filtercategory).name
-          : "Lots",
-      });
+          : "Lots9999",
+      headerRight: () => (
+
+              <View style={style_templates.header_button_container}>
+                <View style={style_templates.header_button}>
+                  {/* <Button onPress={showApplyFiltersModal} title="CHANGE VIEW"> */}
+            <Pressable
+              onPress={showApplyFiltersModal}
+            >
+                     <Icon2 name="filter" size={30} color="#f08080" />
+            </Pressable>
+                  {/* </Button> */}
+                </View>
+              {/* <Text>   </Text> */}
+                <View style={style_templates.header_button}>
+              {/* <Button onPress={resetApp} title="RESET"></Button> */}
+            <Pressable
+              onPress={resetApp}
+            >
+                     <Icon2 name="refresh" size={30} color="#8fbc8f" />
+            </Pressable>
+              {/* <Button onPress={resetApp} >
+                     <Icon2 name="refresh" size={30} color="#f08080" />
+              </Button> */}
+                </View>
+              {/* <Text>  </Text> */}
+              {/* <Button onPress={invokeShowLotsHandler} title="LOTS"></Button> */}
+              
+             </View>
+            ),
+      },
+      );
     }
 
     // fetch('http://192.168.1.8:3001/api')
@@ -131,6 +166,11 @@ function TranchesScreen(props) {
 // }
 
 
+function showApplyFiltersModal () {
+  console.log('Filters Button clicked')
+  setModalVisible(true)
+}
+
   const showLotsHandler = (sfid, sfname, fc_from_card) => {
     const current_tranche_filter = filteritems.tranche;
     if (filterAlreadyAdded(filter_set[filtercategory], sfname) === -1) {
@@ -147,7 +187,7 @@ function TranchesScreen(props) {
       setCurrentTranche(sfname);
     }
     setfiltercategory("lot");
-    // props.navigation.navigate("Lots");
+    // props.navigation.navigate(""Lots"");
   };
 
   function renderCards(itemData) {
@@ -185,6 +225,7 @@ function TranchesScreen(props) {
       filter_params[filtercategory],
       filtercategory
     );
+    console.log('initial_card_data: ' + JSON.stringify(initial_card_data))
     setCardListData(initial_card_data);
     setTotalCountOfLots(
       initial_card_data.reduce((totcount, rec) => totcount + rec.count, 0)
@@ -194,6 +235,7 @@ function TranchesScreen(props) {
   function changeFilterCategoryHandler(fc) {
     setShowCards(false);
     setfiltercategory(fc);
+    setModalVisible(!modalVisible)
   }
 
   const resetApp = () => {
@@ -224,7 +266,44 @@ function TranchesScreen(props) {
   // };
 
   return (
-    <View style={style_templates.app_container}>
+
+
+      <View style={style_templates.app_container}>
+
+
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          // Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={style_templates.filter_container}>
+        {/* <View style={styles.centeredView}> */}
+          <View style={styles.modalView}>
+            {/* <Text style={styles.modalText}>Filter Categories!</Text> */}
+                              <View style={style_templates.filter_sub_container_left}>
+                    <Filters
+                      // filtercategories={filter_categories.filter(
+                      //   (f) => f.apiname != "tranche"
+                      // )}
+                      filtercategories={filter_categories}
+                      changeFilterCategoryHandler={changeFilterCategoryHandler}
+                    />
+                  </View>
+            {/* <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyle}>Close</Text>
+            </Pressable> */}
+          </View>
+        {/* </View> */}
+        </View>
+      </Modal>
+
       <StatusBar
         animated={true}
         backgroundColor="#61dafb"
@@ -254,31 +333,32 @@ function TranchesScreen(props) {
         )}
         {dataFetchComplete && !serverError  && (
           <View style={style_templates.cards_plus_filter_container}>
-            <View style={style_templates.filter_container}>
+            <View >
               {filtercategory != "tranche" && (
                 <>
-                  <View style={style_templates.filter_sub_container_left}>
+                  {/* <View style={style_templates.filter_sub_container_left}>
                     <Filters
-                      filtercategories={filter_categories.filter(
-                        (f) => f.apiname != "tranche"
-                      )}
+                      // filtercategories={filter_categories.filter(
+                      //   (f) => f.apiname != "tranche"
+                      // )}
+                      filtercategories={filter_categories}
                       changeFilterCategoryHandler={changeFilterCategoryHandler}
                     />
-                  </View>
+                  </View> */}
                   <View style={style_templates.filter_sub_container_right}>
                     <View style={style_templates.filter_button_template}>
-                      <Pressable onPress={resetApp}>
+                      {/* <Pressable onPress={resetApp}>
                         <Text style={style_templates.filter_button_text}>
                           Tranches
                         </Text>
-                      </Pressable>
+                      </Pressable> */}
                     </View>
                     <View style={style_templates.filter_button_template}>
-                      <Pressable onPress={invokeShowLotsHandler}>
+                      {/* <Pressable onPress={invokeShowLotsHandler}>
                         <Text style={style_templates.filter_button_text}>
                           Back to Lots
                         </Text>
-                      </Pressable>
+                      </Pressable> */}
                     </View>
                   </View>
                 </>
@@ -287,12 +367,11 @@ function TranchesScreen(props) {
             <View style={style_templates.cards_container}>
               {showCards && !serverError  && (
                 <>
-                  <View style={style_templates.lots_count_banner}>
-                    {/* <View> */}
+                  {/* <View style={style_templates.lots_count_banner}>
                     <Text style={style_templates.lots_count_text}>
                       Filtered {countOfLots} Lots
                     </Text>
-                  </View>
+                  </View> */}
                   <FlatList
                     showsVerticalScrollIndicator={false}
                     scrollEnabled
@@ -309,5 +388,50 @@ function TranchesScreen(props) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    // width:"20%",
+    marginTop: 50,
+    backgroundColor: "#f8f8ff",
+    // borderRadius: 20,
+    // padding: 35,
+    // alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
+  }
+});
 
 export default TranchesScreen;

@@ -22,6 +22,7 @@ import AuthContextProvider, { AuthContext } from "./store/auth-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Icon2 from "react-native-vector-icons/FontAwesome";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 // import stockdata_btr_only from './dummy_data/stockdata_btr_only'
 // import extractDataForConcentrationReport from './utils/extractDataForConcentrationReport'
@@ -30,6 +31,7 @@ import Icon2 from "react-native-vector-icons/FontAwesome";
 export default function App() {
   const Stack = createNativeStackNavigator();
   const [user, setUser] = useState(null);
+  const Tab = createBottomTabNavigator();
 
   function Root() {
     const [appMounted, setappMounted] = React.useState("waiting...");
@@ -104,7 +106,10 @@ export default function App() {
           component={HomeScreen}
           options={{
             headerRight: () => (
+              <>
+              {/* <Button onPress={authCtx.logout} title="FILTERS"></Button> */}
               <Button onPress={authCtx.logout} title="LOGOUT"></Button>              
+              </>
               // <Pressable onPress={authCtx.logout}>
               //   <Icon2 name="logout" size={30} color="#f08080" />
               // </Pressable>
@@ -121,9 +126,7 @@ export default function App() {
           component={LotsScreen}
           options={{
             headerRight: () => (
-            <>
               <Button onPress={authCtx.logout} title="FILTERS"></Button>
-              </>
               // <Pressable onPress={authCtx.logout}>
               //   <Icon2 name="logout" size={30} color="#f08080" />
               // </Pressable>

@@ -34,21 +34,42 @@ export default function Card(props) {
     return x * 100;
   }
 
-  if (props.filtercategory == "tranche") {
+  const isTranche = props.filtercategory === "tranche" ? true : false
+  const iconSize = variables.isDesktop ? 20 : 30
+
+  if (props.filtercategory != "lot" ) {
+  // if (props.filtercategory == "tranche" || props.filtercategory == "milestone") {
     return (
       <Pressable onPress={cardPressHandler}>
         <View style={style_templates.card_template}>
+          {isTranche &&
           <View style={style_templates.tranche_number_box}>
             <Text style={style_templates.tranche_sub_text}>Tranche</Text>
+            {/* <Text style={style_templates.non_tranche_main_text}>
+              {props.cardData.name}
+            </Text> */}
             <Text style={style_templates.tranche_main_text}>
               {props.cardData.name}
             </Text>
           </View>
+          }
+
+          {!isTranche && 
+          <View style={style_templates.tranche_number_box}>
+            {/* <Text style={style_templates.tranche_sub_text}>Tranche</Text> */}
+            {/* <Text style={style_templates.non_tranche_main_text}>
+              {props.cardData.name}
+            </Text> */}
+            <Text style={style_templates.non_tranche_main_text}>
+              {props.cardData.name}
+            </Text>
+          </View>
+          }
 
           <View style={style_templates.generic_box}>
-            <Icon2 name="file-text-o" size={30} color="#f08080" />
+            <Icon2 name="file-text-o" size={iconSize} color="#f08080" />
             <Text style={style_templates.generic_sub_text}>
-              {/* Total Lots : {props.cardData.count} */}
+             {/* Total Lots : {props.cardData.count} */}
               {props.cardData.count}
             </Text>
             <>
@@ -61,8 +82,8 @@ export default function Card(props) {
           </View>
 
           <View style={style_templates.generic_box}>
-            {/* <Icon name="home-outline" size={30} color="#4F8EF7" /> */}
-            <Icon2 name="bank" size={30} color="#808000" />
+            {/* <Icon name="home-outline" size={iconSize} color="#4F8EF7" /> */}
+            <Icon2 name="bank" size={iconSize} color="#808000" />
             <Text style={style_templates.generic_sub_text}>
               {/* Land Settled = {props.cardData.landsettled} */}
               {props.cardData.landsettled}
@@ -77,7 +98,7 @@ export default function Card(props) {
           </View>
 
           <View style={style_templates.generic_box}>
-            <Icon name="hammer-outline" size={30} color="#778899" />
+            <Icon name="hard-hat" size={iconSize} color="#778899" />
             <Text style={style_templates.generic_sub_text}>
               {/* Settlement Claim : {props.cardData.settlementclaimdone} */}
               {props.cardData.settlementclaimdone}              
@@ -92,7 +113,7 @@ export default function Card(props) {
           </View>
 
           <View style={style_templates.generic_box}>
-            <Icon2 name="home" size={30} color="#8fbc8f" />
+            <Icon2 name="check" size={iconSize} color="#8fbc8f" />
             <Text style={style_templates.generic_sub_text}>
               {/* Leased ={props.cardData.leased} */}
               {props.cardData.leased}
@@ -105,6 +126,64 @@ export default function Card(props) {
             }
           </>            
           </View>
+
+{ variables.isDesktop  &&
+<>
+          <View style={style_templates.generic_box}>
+            <Icon2 name="cube" size={iconSize} color="#778899" />
+            <Text style={style_templates.generic_sub_text}>
+              {(props.cardData.totalsize / props.cardData.count).toFixed(0)} sq m
+            </Text>
+              { variables.isDesktop  &&
+            <Text style={style_templates.generic_sub_text_description}>
+              Avg. Land Size
+            </Text>                        
+            }
+          </View>
+
+          <View style={style_templates.generic_box}>
+            <Icon2 name="home" size={iconSize} color="#8fbc8f" />
+            <Text style={style_templates.generic_sub_text}>
+              {(props.cardData.totalhousesize / props.cardData.count).toFixed(0)} sq m
+            </Text>
+            <Text style={style_templates.generic_sub_text_description}>
+              Avg. House Size
+            </Text>                        
+          </View>
+
+          <View style={style_templates.generic_box}>
+            {/* <Icon2 name="home" size={iconSize} color="#8fbc8f" /> */}
+            <Icon2 name="usd" size={iconSize} color="#8fbc8f" />
+            <Text style={style_templates.generic_sub_text}>
+              {/* Leased ={props.cardData.leased} */}
+              $ {(props.cardData.totalprice / props.cardData.count / 1000).toFixed(0)} K
+            </Text>
+             <>
+              { variables.isDesktop  &&
+            <Text style={style_templates.generic_sub_text_description}>
+              Avg. Land Price
+            </Text>                        
+            }
+          </>            
+          </View>
+
+          <View style={style_templates.generic_box}>
+            <Icon2 name="hammer-outline" size={iconSize} color="#8fbc8f" />
+            <Text style={style_templates.generic_sub_text}>
+              {/* Leased ={props.cardData.leased} */}
+              {(props.cardData.totalbuildprice  / props.cardData.count / 1000).toFixed(0)} K
+            </Text>
+             <>
+              { variables.isDesktop  &&
+            <Text style={style_templates.generic_sub_text_description}>
+              Avg. Build Price
+            </Text>                        
+            }
+          </>            
+          </View>
+
+          </>
+  }
 
           <View style={style_templates.progress_box}>
             <Text style={style_templates.progress_main_text}>
@@ -156,7 +235,7 @@ export default function Card(props) {
           <Text>{props.cardData.stage}</Text> */}
           <View style={style_templates.generic_box}>
           {/* <View style={style_templates.generic_box_lot}> */}
-            {/* <Icon2 name="tachometer" size={30} color="#8fbc8f" /> */}
+            {/* <Icon2 name="tachometer" size={iconSize} color="#8fbc8f" /> */}
             {/* <Text style={style_templates.generic_sub_text}></Text> */}
             <Text>{props.cardData.lateststage} Stage</Text>
              <>
@@ -170,7 +249,7 @@ export default function Card(props) {
 
           <View style={style_templates.generic_box}>
           {/* <View style={style_templates.generic_box_lot}> */}
-            <Icon2 name="usd" size={20} color="#8fbc8f" />
+            <Icon2 name="usd" size={iconSize} color="#8fbc8f" />
             {/* <Text style={style_templates.generic_sub_text}></Text> */}
             <Text>{(props.cardData.price / 1000).toFixed(0)}K</Text>            
              <>
@@ -178,12 +257,11 @@ export default function Card(props) {
             <Text style={style_templates.generic_sub_text_description}>
               Land Price 
             </Text>
-            }
-          </>            
+            }            
+            </>
           </View>
-
           {/* <View style={style_templates.generic_box}>
-            <Icon2 name="usd" size={20} color="#8fbc8f" />
+            <Icon2 name="usd" size={iconSize} color="#8fbc8f" />
             <Text>{(props.cardData.buildprice / 1000).toFixed(0)}K</Text>
             <Text style={style_templates.generic_sub_text_description}>
               Build Price 

@@ -67,6 +67,8 @@ const style_templates = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+        marginRight:
+      variables.isDesktop ? 0 : 5
   },
 
   app_sub_container: {
@@ -125,10 +127,10 @@ const style_templates = StyleSheet.create({
     flexDirection: "row",
     borderRadius: 2,
     // marginHorizontal: 20,
-    // marginBottom: 10,
+    // marginBottom: 20,
     borderBottomWidth: 1,
     borderBottomColor: color_codes.lightgrey,
-    paddingHorizontal: 10,
+    // paddingHorizontal: 10,
     height:
       variables.isDesktop
         ? 0.075 * Dimensions.get("window").height
@@ -141,7 +143,7 @@ const style_templates = StyleSheet.create({
 
         width:
       variables.isDesktop
-        ? 0.6 * Dimensions.get("window").width
+        ? 0.598 * Dimensions.get("window").width
         : Dimensions.get("window").width,
     
 
@@ -150,6 +152,9 @@ const style_templates = StyleSheet.create({
     // backgroundColor: "#add8e6",
     alignItems: "center",
     justifyContent: "space-between",
+    // marginLeft: 1,
+    // marginRight: 1
+
   },
 
   tranche_number_box: {
@@ -160,7 +165,7 @@ const style_templates = StyleSheet.create({
     justifyContent: "center",
         height:
       variables.isDesktop
-        ? 70
+        ? 65
         : 70,
     // height: 70,
     alignItems: "center",
@@ -178,6 +183,21 @@ const style_templates = StyleSheet.create({
     alignItems: "center",
   },
 
+  non_tranche_main_text: {
+       fontSize:
+      variables.isDesktop
+        ? 12
+        : 14,
+    // fontSize: 30,
+    width:
+          variables.isDesktop
+        ? 70
+        : 60,
+    color: "#f8f8ff",
+    alignItems: "center",
+    fontWeight: "bold",
+  },
+
   tranche_sub_text: {
     fontSize: 15,
     color: "#f8f8ff",
@@ -191,7 +211,9 @@ const style_templates = StyleSheet.create({
     justifyContent: "center",
     height: 70,
     alignItems: "center",
+    marginRight:5
   },
+
   progress_main_text: {
     color: "black",
   },
@@ -203,6 +225,9 @@ const style_templates = StyleSheet.create({
   generic_box: {
     justifyContent: "center",
     alignItems: "center",
+    width: variables.isDesktop
+        ? 'auto'
+        : 50,
   },
 
   generic_sub_text: {
@@ -260,28 +285,28 @@ const style_templates = StyleSheet.create({
 
   filter_container: {
     // backgroundColor: "green",
-    backgroundColor: "#d3d3d3",
+    // backgroundColor: "#d3d3d3",
     // backgroundColor: "#add8e6",
-    width: "100%",
+    // width: "100%",
     // flex: 1,
     // height: 150,
     // width: 20,
-    width: "100%",
+    // width: "100%",
     display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: "column",
+    // justifyContent: "space-between",
     // justifyContent: "center",
-    alignItems: "center",
+    // alignItems: "center",
     // paddingTop: 10,
   },
 
   filter_sub_container_left: {
-    flex: 3,
+    // flex: 3,
     display: "flex",
-    flexDirection: "row",
+    // flexDirection: "column",
     justifyContent: "center",
-    paddingLeft: 70,
-    borderWidth: 1,
+    // paddingLeft: 70,
+    // borderWidth: 1,
   },
 
   filter_sub_container_right: {
@@ -308,19 +333,30 @@ const style_templates = StyleSheet.create({
   },
 
   filter_button_template: {
-    borderRadius: 7,
+    // borderRadius: 7,
     // flex: 1,
-    // width: 70,
+    // width: 20,
+    // width: 175,
+    width: "100%",
     height: 40,
-    backgroundColor: "#add8e6",
+    // backgroundColor: "#add8e6",
     marginHorizontal: 5,
+    marginVertical: 1,
     paddingHorizontal: 5,
     justifyContent: "center",
+    borderBottomWidth: 1,
+    borderBottomColor: color_codes.lightgrey,
     // alignItems: "center",
+    hover : {
+      transform: "scale(0.6)",
+      transitionDuration: "0.5s",
+      backgroundColor: "red"
+    }
   },
+
   filter_button_text: {
-    fontSize: 12,
-    fontWeight: "bold",
+    fontSize: 14,
+    // fontWeight: "bold",
   },
 
   summary_card_title: {
@@ -359,13 +395,13 @@ const style_templates = StyleSheet.create({
   },
 
   lots_count_banner: {
-    backgroundColor: "black",
+    // backgroundColor: "black",
     width: "100%",
     // justifyContent: "center",
     alignItems: "center",
     padding: 5,
     // marginTop: 70,
-    marginBottom: 10,
+    marginBottom: 2,
   },
 
   lots_count_text: {
@@ -384,8 +420,10 @@ const style_templates = StyleSheet.create({
     // borderWidth: 3,
     // borderColor: "#2e8b57",
     borderWidth: 1,
+    // borderBottomWidth: 1,
     borderColor: "#2e8b57",
     padding: 5,
+    // marginRight:5
   },
 
   custom_button_wrapper: {
@@ -418,7 +456,33 @@ const style_templates = StyleSheet.create({
   
   button:{
     backgroundColor:'#ff5c5c',
+  },
+
+  login_page_input_text_box: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  },
+
+
+  header_button_container: {
+    marginRight: variables.isDesktop ? 400 : 0,
+    flexDirection: "row",
+    // width: 170,
+    // justifyContent: "space-between",
+    // marginRight: 25
+  },
+
+  header_button : {
+    width: 30,
+    marginRight:5,
+    // borderWidth: 1,
+    // borderColor: color_codes.lightgrey,
+    // borderRadius:3,
+    // elevation:10
   }
+
 
 });
 

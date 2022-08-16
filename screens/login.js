@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { ImageBackground, StyleSheet, Text, View, Button } from "react-native";
+import { TextInput , ImageBackground, StyleSheet, Text, View, Button } from "react-native";
 // import { getAuth, signInWithEmailAndPassword } from "../utils/firebaseConfig";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import Inputbox from "../components/Inputbox";
@@ -74,14 +74,18 @@ export default function LoginScreen({ navigation }) {
         >
           <View style={style_templates.login_sub_container}>
             <View style={style_templates.login_fields_container}>
-              <Inputbox
+              <Inputbox 
                 label="Username"
                 storeInputHandler={storeInputHandler}
-              ></Inputbox>
-              <Inputbox
+                placeholder="Username / Email"                
+                buttonname= "username"
+              ></Inputbox >
+              <Inputbox 
                 label="Password"
                 storeInputHandler={storeInputHandler}
-              ></Inputbox>
+                placeholder="Password"
+                buttonname= "password"
+              ></Inputbox >
               <Text></Text>
               <Button onPress={loginHandler} title="LOGIN"></Button>
               <View style={style_templates.error_message_box}>

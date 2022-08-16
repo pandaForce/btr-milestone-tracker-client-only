@@ -4,7 +4,7 @@ import lifecycle_stages from './lifecycle_stages'
 const calculateCompletePctg = (statusdev, milestone) =>{
     if(lifecycle_stages.indexOf(milestone ? milestone : statusdev) > -1) {
         // return ( ( ( lifecycle_stages.indexOf(milestone ? milestone : statusdev) / lifecycle_stages.length ) + (initial_pctg ) ) / 2)
-        return   ( lifecycle_stages.indexOf(milestone ? milestone : statusdev) / lifecycle_stages.length )   
+        return   ( [ lifecycle_stages.indexOf(milestone ? milestone : statusdev) + 1] / lifecycle_stages.length )   
     }
     else {
         // return initial_pctg / 2
