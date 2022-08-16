@@ -98,7 +98,7 @@ export default function Card(props) {
           </View>
 
           <View style={style_templates.generic_box}>
-            <Icon name="hard-hat" size={iconSize} color="#778899" />
+            <Icon name="pencil" size={iconSize} color="#778899" />
             <Text style={style_templates.generic_sub_text}>
               {/* Settlement Claim : {props.cardData.settlementclaimdone} */}
               {props.cardData.settlementclaimdone}              
@@ -113,7 +113,7 @@ export default function Card(props) {
           </View>
 
           <View style={style_templates.generic_box}>
-            <Icon2 name="check" size={iconSize} color="#8fbc8f" />
+            <Icon2 name="check-square-o" size={iconSize} color="#8fbc8f" />
             <Text style={style_templates.generic_sub_text}>
               {/* Leased ={props.cardData.leased} */}
               {props.cardData.leased}
