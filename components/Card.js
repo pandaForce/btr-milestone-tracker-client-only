@@ -73,11 +73,11 @@ export default function Card(props) {
               {props.cardData.count}
             </Text>
             <>
-            { variables.isDesktop  &&
+            {/* { variables.isDesktop  && */}
             <Text style={style_templates.generic_sub_text_description}>
               Total Lots
             </Text>
-            }
+            {/* } */}
           </>
           </View>
 
@@ -94,11 +94,16 @@ export default function Card(props) {
               Land settled
             </Text>
             }
+                          { !variables.isDesktop  &&
+            <Text style={style_templates.generic_sub_text_description}>
+              Settled
+            </Text>
+            }
           </>            
           </View>
 
           <View style={style_templates.generic_box}>
-            <Icon name="pencil" size={iconSize} color="#778899" />
+            <Icon2 name="pencil" size={iconSize} color="#778899" />
             <Text style={style_templates.generic_sub_text}>
               {/* Settlement Claim : {props.cardData.settlementclaimdone} */}
               {props.cardData.settlementclaimdone}              
@@ -106,7 +111,12 @@ export default function Card(props) {
              <>
               { variables.isDesktop  &&
             <Text style={style_templates.generic_sub_text_description}>
-              Settlement Claims
+              Final Claims
+            </Text>            
+            }
+              { !variables.isDesktop  &&
+            <Text style={style_templates.generic_sub_text_description}>
+              Final
             </Text>            
             }
           </>            
@@ -124,6 +134,11 @@ export default function Card(props) {
               Leased
             </Text>                        
             }
+              { !variables.isDesktop  &&
+            <Text style={style_templates.generic_sub_text_description}>
+              LEAP
+            </Text>                        
+            }            
           </>            
           </View>
 
@@ -168,7 +183,7 @@ export default function Card(props) {
           </View>
 
           <View style={style_templates.generic_box}>
-            <Icon2 name="hammer-outline" size={iconSize} color="#8fbc8f" />
+            <Icon2 name="usd" size={iconSize} color="#8fbc8f" />
             <Text style={style_templates.generic_sub_text}>
               {/* Leased ={props.cardData.leased} */}
               {(props.cardData.totalbuildprice  / props.cardData.count / 1000).toFixed(0)} K
@@ -182,15 +197,52 @@ export default function Card(props) {
           </>            
           </View>
 
+          <View style={style_templates.generic_box}>
+            {/* <Icon2 name="home" size={iconSize} color="#8fbc8f" /> */}
+            <Icon2 name="usd" size={iconSize} color="#8fbc8f" />
+            <Text style={style_templates.generic_sub_text}>
+              {/* Leased ={props.cardData.leased} */}
+              $ {(props.cardData.totalprice /  1000000).toFixed(2)} M
+            </Text>
+             <>
+              { variables.isDesktop  &&
+            <Text style={style_templates.generic_sub_text_description}>
+              Total Land Price
+            </Text>                        
+            }
+          </>            
+          </View>
+
+          <View style={style_templates.generic_box}>
+            <Icon2 name="usd" size={iconSize} color="#8fbc8f" />
+            <Text style={style_templates.generic_sub_text}>
+              {/* Leased ={props.cardData.leased} */}
+              {(props.cardData.totalbuildprice  / 1000000).toFixed(2)} M
+            </Text>
+             <>
+              { variables.isDesktop  &&
+            <Text style={style_templates.generic_sub_text_description}>
+              Total Build Price
+            </Text>                        
+            }
+          </>            
+          </View>
+
+
+
           </>
   }
 
           <View style={style_templates.progress_box}>
+            <Icon2 name="dashboard" size={iconSize} color="#8fbc8f" />
             <Text style={style_templates.progress_main_text}>
               { (props.cardData.completepctg / props.cardData.count * 100).toFixed(0) }
               %
             </Text>
-            <Text style={style_templates.progress_sub_text}>complete</Text>
+            {/* <Text style={style_templates.progress_sub_text}>complete</Text> */}
+                        <Text style={style_templates.generic_sub_text_description}>
+              Complete
+            </Text>     
           </View>
         </View>
       </Pressable>

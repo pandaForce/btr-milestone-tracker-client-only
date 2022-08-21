@@ -76,7 +76,8 @@ const style_templates = StyleSheet.create({
     // width: 600,
         width:
       variables.isDesktop
-        ? 0.6 * Dimensions.get("window").width
+        // ? 0.6 * Dimensions.get("window").width
+        ? 0.9 * Dimensions.get("window").width
         : Dimensions.get("window").width,
     height: Dimensions.get("window").height,
     borderWidth:1,
@@ -143,7 +144,8 @@ const style_templates = StyleSheet.create({
 
         width:
       variables.isDesktop
-        ? 0.598 * Dimensions.get("window").width
+        // ? 0.598 * Dimensions.get("window").width
+        ? 0.898 * Dimensions.get("window").width
         : Dimensions.get("window").width,
     
 
@@ -470,17 +472,24 @@ const style_templates = StyleSheet.create({
     marginRight: variables.isDesktop ? 400 : 0,
     flexDirection: "row",
     // width: 170,
-    // justifyContent: "space-between",
+    justifyContent: "space-between",
     // marginRight: 25
   },
 
   header_button : {
-    width: 30,
+    // width: 30,
     marginRight:5,
-    // borderWidth: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+        // borderWidth: 1,
     // borderColor: color_codes.lightgrey,
     // borderRadius:3,
     // elevation:10
+  },
+
+    header_button_text : {
+    fontSize: 12,
   }
 
 

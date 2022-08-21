@@ -117,21 +117,22 @@ function TranchesScreen(props) {
 
               <View style={style_templates.header_button_container}>
                 <View style={style_templates.header_button}>
-                  {/* <Button onPress={showApplyFiltersModal} title="CHANGE VIEW"> */}
-            <Pressable
-              onPress={showApplyFiltersModal}
-            >
-                     <Icon2 name="filter" size={30} color="#f08080" />
-            </Pressable>
-                  {/* </Button> */}
-                </View>
+                  {/* <Button onPress={toggleFiltersModal} title="CHANGE VIEW">  */}
+              <Pressable
+              onPress={toggleFiltersModal}
+            > 
+                     <Icon2 name="bar-chart" size={20} color="#87ceeb" />
+                     <Text style={style_templates.header_button_text}>Group</Text>
+             </Pressable>
+             </View>
               {/* <Text>   </Text> */}
                 <View style={style_templates.header_button}>
               {/* <Button onPress={resetApp} title="RESET"></Button> */}
             <Pressable
               onPress={resetApp}
             >
-                     <Icon2 name="refresh" size={30} color="#8fbc8f" />
+                     <Icon2 name="refresh" size={20} color="#8fbc8f" />
+                     <Text style={style_templates.header_button_text}>Reset</Text>
             </Pressable>
               {/* <Button onPress={resetApp} >
                      <Icon2 name="refresh" size={30} color="#f08080" />
@@ -166,9 +167,9 @@ function TranchesScreen(props) {
 // }
 
 
-function showApplyFiltersModal () {
+function toggleFiltersModal () {
   console.log('Filters Button clicked')
-  setModalVisible(true)
+  setModalVisible(!modalVisible)
 }
 
   const showLotsHandler = (sfid, sfname, fc_from_card) => {
@@ -398,7 +399,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     // width:"20%",
-    marginTop: 50,
+    marginTop: 250,
     backgroundColor: "#f8f8ff",
     // borderRadius: 20,
     // padding: 35,

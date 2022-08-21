@@ -1,6 +1,6 @@
 import lifecycle_stages from './lifecycle_stages'
 // const stages_on_or_after_final_claim = ['Final', 'Settlement', 'Advertised', 'Leased']
-const  stages_on_or_after_final_claim = lifecycle_stages.slice(lifecycle_stages.indexOf('Final'))
+const  stages_on_or_after_final_claim = lifecycle_stages.slice(lifecycle_stages.indexOf('Settlement'))
 console.log('lifecycle_stages: ' + lifecycle_stages)
 
 const IsFinalCalledUp = (value) =>{
