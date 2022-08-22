@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native";
 
-const ISTEST = true
+const ISTEST = false
 // const LOCALHOST_IP_ADDRESS = '192.168.13.151'
 const LOCALHOST_IP_ADDRESS = '192.168.43.163'
 // const LOCALHOST_IP_ADDRESS = '192.168.0.10'
